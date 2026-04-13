@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LTF MEDIA — Every Frame Elevated</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@200;300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#070709;
+  --text:#f0ece4;
+  --text2:#d4d0c8;
+  --dim:#6b6560;
+  --accent:#c9a84c;
+  --accent-b:#dbb954;
+  --accent-dim:#8b7233;
+  --border:rgba(255,255,255,.07);
+  --border-a:rgba(201,168,76,.15);
+  --glow:0 0 40px rgba(201,168,76,.1),0 0 80px rgba(201,168,76,.04);
+  --fd:'Outfit',sans-serif;
+  --fs:'Cormorant Garamond',serif;
+  --fm:'IBM Plex Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fd);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+
+/* PRELOADER */
+.pre{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;transition:opacity .6s,visibility .6s}
+.pre.out{opacity:0;visibility:hidden;pointer-events:none}
+.pre-word{font-family:var(--fs);font-size:clamp(2.5rem,7vw,4.5rem);font-weight:500;letter-spacing:.15em;color:var(--accent)}
+.pre-bar{width:160px;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.pre-bar i{display:block;height:100%;width:0;background:var(--accent);animation:pload 2s ease forwards}
+@keyframes pload{to{width:100%}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.scrolled{background:rgba(7,7,9,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{font-family:var(--fs);font-size:1.5rem;font-weight:500;color:var(--accent);letter-spacing:.2em;text-decoration:none}
+.logo span{color:var(--text);font-weight:300}
+.navr{display:flex;align-items:center;gap:32px}
+.nva{color:var(--dim);text-decoration:none;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;font-weight:400;transition:color .3s}
+.nva:hover{color:var(--text)}
+.nvc{background:transparent;border:1px solid rgba(201,168,76,.4);color:var(--accent);padding:10px 26px;font-family:var(--fd);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-weight:400;text-decoration:none}
+.nvc:hover{background:var(--accent);color:var(--bg)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.ham span{width:24px;height:1.5px;background:var(--text)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:120px 48px 80px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 40%,rgba(201,168,76,.06),transparent 60%),radial-gradient(circle at 80% 20%,rgba(201,168,76,.04),transparent 40%),var(--bg)}
+.hero-grain{position:absolute;inset:0;opacity:.3;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E")}
+.hero-c{position:relative;z-index:2;max-width:900px;margin:0 auto;text-align:center}
+.h-eye{font-family:var(--fm);font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:14px;opacity:0;animation:fu .8s ease .2s forwards}
+.h-eye::before{content:'';width:40px;height:1px;background:var(--accent-dim)}
+.h-title{font-family:var(--fs);font-size:clamp(3.5rem,10vw,7.5rem);font-weight:500;line-height:.92;margin-bottom:24px;opacity:0;animation:fu .8s ease .4s forwards}
+.h-title em{font-style:italic;color:var(--accent);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:6px;text-decoration-thickness:2px}
+.tw{display:inline;position:relative}
+.tw::after{content:'|';color:var(--accent);animation:cb .6s step-end infinite;margin-left:2px;font-weight:300}
+@keyframes cb{0%,100%{opacity:1}50%{opacity:0}}
+.h-sub{font-size:clamp(.88rem,1.5vw,1.05rem);color:var(--dim);max-width:520px;line-height:1.8;margin-bottom:44px;font-weight:300;opacity:0;animation:fu .8s ease .6s forwards}
+.h-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;animation:fu .8s ease .8s forwards}
+.btn{padding:14px 40px;font-family:var(--fd);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-weight:400;text-decoration:none;display:inline-block;border:none}
+.btn-g{background:var(--accent);color:var(--bg)}.btn-g:hover{background:var(--accent-b);box-shadow:var(--glow);transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--text);border:1px solid var(--border)}.btn-o:hover{border-color:var(--accent);color:var(--accent)}
+.h-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;opacity:0;animation:fu .8s ease 1s forwards}
+.h-scroll span{font-family:var(--fm);font-size:.58rem;letter-spacing:.25em;color:var(--dim);text-transform:uppercase}
+.sd{width:1px;height:36px;position:relative;overflow:hidden}
+.sd::after{content:'';position:absolute;top:-100%;left:0;width:1px;height:100%;background:var(--accent);animation:sdd 2s ease infinite}
+@keyframes sdd{0%{top:-100%}100%{top:100%}}
+@keyframes fu{to{opacity:1;transform:translateY(0)}}
+.h-eye,.h-title,.h-sub,.h-btns{transform:translateY(24px)}.h-scroll{transform:translateX(-50%) translateY(24px)}
+
+/* SECTIONS */
+section{padding:100px 48px}
+.stag{font-family:var(--fm);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.stag::before{content:'';width:20px;height:1px;background:var(--accent)}
+.st{font-family:var(--fs);font-size:clamp(2rem,5vw,3.8rem);font-weight:500;line-height:1.05;margin-bottom:20px}
+.sdsc{color:var(--dim);max-width:520px;line-height:1.8;font-size:.9rem;font-weight:300}
+
+/* CLIENTS */
+.cli{padding:32px 0;overflow:hidden;background:var(--accent);border:none}
+.cli-t{display:flex;gap:48px;animation:mq 30s linear infinite;width:max-content}
+.cli-n{font-family:var(--fd);font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(7,7,9,.4);white-space:nowrap;transition:color .3s}
+.cli-n:hover{color:var(--bg)}
+.cli-d{color:rgba(7,7,9,.2);font-size:.5rem;display:flex;align-items:center}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* SHOWREEL */
+.reel-w{background:#f0ece4;padding:100px 48px}
+.reel-w .stag{color:var(--bg)}.reel-w .stag::before{background:var(--bg)}
+.reel-w .st{color:var(--bg)}
+.reel{text-align:center;max-width:1100px;margin:0 auto}
+.reel-f{margin:44px auto 0;border-radius:8px;overflow:hidden;border:1px solid rgba(7,7,9,.1);box-shadow:0 20px 60px rgba(0,0,0,.1);position:relative}
+.reel-f iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+
+/* SPLINE */
+.spl-sec{position:relative;background:#000;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:100px 48px}
+.spl-g{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;max-width:1300px;margin:0 auto;align-items:center}
+.spl-f{position:relative;width:100%;aspect-ratio:1/1;border-radius:8px;overflow:hidden}
+.spl-f iframe{width:100%;height:100%;border:none}
+.spl-f .spl-wm{position:absolute;bottom:0;left:0;right:0;height:60px;background:#000;z-index:10}
+.feat{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px}
+.feat-ic{width:34px;height:34px;min-width:34px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-a);color:var(--accent);font-family:var(--fm);font-size:.7rem}
+.feat h4{font-family:var(--fs);font-size:1.05rem;font-weight:500;margin-bottom:3px}
+.feat p{color:var(--dim);font-size:.78rem;line-height:1.6;font-weight:300}
+
+/* FILM REEL MARQUEE */
+.film-reel{position:relative;overflow:hidden;background:#0a0a0a;padding:0;border-top:1px solid rgba(201,168,76,.12);border-bottom:1px solid rgba(201,168,76,.12)}
+/* Sprocket strips */
+.sprocket{height:28px;background:#0a0a0a;position:relative;display:flex;align-items:center;border-bottom:1px solid rgba(201,168,76,.08)}
+.sprocket.bot{border-bottom:none;border-top:1px solid rgba(201,168,76,.08)}
+.sprocket-holes{display:flex;animation:mq 12s linear infinite;width:max-content}
+.sprocket-hole{width:16px;height:12px;border-radius:3px;border:1px solid rgba(201,168,76,.2);margin:0 22px;flex-shrink:0;background:rgba(201,168,76,.03)}
+/* Film gate lines */
+.film-reel::before,.film-reel::after{content:'';position:absolute;left:0;right:0;height:1px;z-index:2}
+.film-reel::before{top:28px;background:linear-gradient(90deg,var(--accent),rgba(201,168,76,.3),var(--accent))}
+.film-reel::after{bottom:28px;background:linear-gradient(90deg,var(--accent),rgba(201,168,76,.3),var(--accent))}
+/* Content strip between sprockets */
+.film-content{padding:28px 0;position:relative;overflow:hidden}
+.film-track{display:flex;gap:0;animation:mq 24s linear infinite;width:max-content}
+.film-frame{display:flex;align-items:center;justify-content:center;padding:0 40px;position:relative;white-space:nowrap}
+.film-frame::after{content:'';position:absolute;right:0;top:8px;bottom:8px;width:1px;background:rgba(201,168,76,.12)}
+.film-frame span{font-family:var(--fs);font-size:clamp(1.8rem,4vw,3rem);font-weight:500;color:var(--text);letter-spacing:.02em;transition:color .3s}
+.film-frame:hover span{color:var(--accent)}
+/* Frame counter */
+.film-frame .fc{font-family:var(--fm);font-size:.45rem;color:rgba(201,168,76,.25);position:absolute;bottom:4px;right:12px;letter-spacing:.05em}
+/* Vignette on edges */
+.film-content::before,.film-content::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:3;pointer-events:none}
+.film-content::before{left:0;background:linear-gradient(90deg,#0a0a0a,transparent)}
+.film-content::after{right:0;background:linear-gradient(270deg,#0a0a0a,transparent)}
+/* Grain overlay on reel */
+.film-grain{position:absolute;inset:0;pointer-events:none;opacity:.15;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E")}
+@media(max-width:768px){.film-frame span{font-size:clamp(1.2rem,4vw,1.6rem)}.film-frame{padding:0 24px}.sprocket-hole{width:12px;height:8px;margin:0 14px}}
+
+/* PORTFOLIO */
+.pf{max-width:1400px;margin:0 auto}
+.pfh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;gap:20px}
+.fb{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:36px}
+.fbtn{padding:7px 18px;font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--dim);cursor:pointer;transition:all .3s;border-radius:100px;font-weight:400}
+.fbtn.on,.fbtn:hover{border-color:var(--accent);color:var(--accent);background:rgba(201,168,76,.04)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(370px,100%),1fr));gap:16px}
+.vc{border-radius:8px;overflow:hidden;border:1px solid var(--border);background:var(--bg);cursor:pointer;transition:all .4s}
+.vc:hover{border-color:var(--border-a);transform:translateY(-4px);box-shadow:var(--glow)}
+.vc .tmb{width:100%;aspect-ratio:16/9;position:relative;overflow:hidden}
+.vc .tmb img{width:100%;height:100%;object-fit:cover;transition:transform .5s,filter .5s;filter:brightness(.75)}
+.vc:hover .tmb img{transform:scale(1.05);filter:brightness(1)}
+.vc .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.vc:hover .play{opacity:1}
+.plc{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);box-shadow:var(--glow)}
+.plc svg{width:18px;height:18px;fill:var(--bg);margin-left:2px}
+.vc .info{padding:16px 18px}
+.vc .tag{font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:5px}
+.vc .ttl{font-family:var(--fs);font-size:1.1rem;font-weight:500;margin-bottom:6px;line-height:1.3}
+.vc .dsc{color:var(--dim);font-size:.72rem;line-height:1.6;font-weight:300;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* MODAL */
+.modal{position:fixed;inset:0;z-index:9998;background:rgba(7,7,9,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .35s}
+.modal.open{opacity:1;visibility:visible}
+.modal .inner{width:90%;max-width:1100px;position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--border-a);box-shadow:var(--glow);transform:scale(.93);transition:transform .35s}
+.modal.open .inner{transform:scale(1)}
+.modal iframe{width:100%;aspect-ratio:16/9;border:none;display:block}
+.mcl{position:absolute;top:-44px;right:0;background:none;border:none;color:var(--text);font-size:.7rem;cursor:pointer;font-family:var(--fm);letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:6px;transition:color .3s}
+.mcl:hover{color:var(--accent)}
+
+/* SERVICES */
+.svcw{background:#f0ece4;padding:100px 48px}
+.svcw .stag{color:var(--bg)}.svcw .stag::before{background:var(--bg)}
+.svcw .st{color:var(--bg)}.svcw .sdsc{color:rgba(7,7,9,.5)}
+.svcs{max-width:1200px;margin:0 auto}
+.svg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.sv{padding:32px 24px;border:1px solid rgba(255,255,255,.06);background:var(--bg);transition:all .3s;position:relative;overflow:hidden}
+.sv::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.sv:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.15)}.sv:hover::before{transform:scaleX(1)}
+.sv-n{font-family:var(--fm);font-size:.5rem;color:var(--accent);letter-spacing:.15em;margin-bottom:16px}
+.sv-t{font-family:var(--fs);font-size:1.2rem;font-weight:500;margin-bottom:8px;color:var(--text)}
+.sv-d{color:rgba(255,255,255,.45);font-size:.78rem;line-height:1.7}
+
+/* PROCESS */
+.proc{background:var(--accent);padding:100px 48px;position:relative}
+.proc .stag{color:var(--bg);justify-content:center}.proc .stag::before{background:var(--bg)}
+.proc .st{color:var(--bg);text-align:center}
+.proc .sdsc{color:rgba(7,7,9,.5);text-align:center;margin:0 auto 56px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-width:1200px;margin:0 auto}
+.step{background:var(--bg);padding:32px 24px;position:relative;transition:all .3s;border-radius:4px}
+.step:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.step-n{font-family:var(--fm);font-size:2.5rem;font-weight:400;color:var(--accent);margin-bottom:16px}
+.step-t{font-family:var(--fs);font-size:1.1rem;font-weight:500;color:var(--text);margin-bottom:8px}
+.step-d{font-size:.75rem;color:rgba(255,255,255,.45);line-height:1.6}
+.step-a{position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:1.2rem;z-index:1}
+
+/* DASHBOARD */
+.dashw{background:var(--bg);padding:100px 48px;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.dash{max-width:1200px;margin:0 auto}
+.dg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px}
+.dc{background:rgba(255,255,255,.02);border:1px solid var(--border);padding:36px 28px;text-align:center;transition:all .3s}
+.dc:hover{border-color:var(--border-a)}
+.dc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transition:transform .5s}.dc:hover::after{transform:scaleX(1)}
+.dc{position:relative;overflow:hidden}
+.dv{font-family:var(--fs);font-size:clamp(2rem,4vw,3rem);font-weight:500;margin-bottom:6px;font-variant-numeric:tabular-nums;color:var(--accent)}
+.dl{font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.dsub{font-size:.7rem;color:var(--dim);line-height:1.5;font-weight:300}
+.dlive{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:40px}
+.dlive::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:cb .6s step-end infinite}
+
+/* TESTIMONIALS */
+.testiw{background:#f0ece4;padding:100px 48px}
+.testiw .stag{color:var(--bg)}.testiw .stag::before{background:var(--bg)}
+.testiw .st{color:var(--bg)}
+.testi{max-width:1200px;margin:0 auto}
+.tg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.tc{padding:32px 24px;border:1px solid rgba(7,7,9,.08);background:#fff;position:relative}
+.tc::before{content:'\201C';position:absolute;top:16px;right:20px;font-family:var(--fs);font-size:3rem;color:rgba(201,168,76,.2);line-height:1}
+.tq{font-size:.85rem;line-height:1.7;color:rgba(7,7,9,.65);margin-bottom:20px;font-style:italic}
+.ta{display:flex;align-items:center;gap:12px}
+.tav{width:36px;height:36px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:.8rem;font-weight:600;color:var(--bg);border-radius:50%}
+.tname{font-size:.72rem;font-weight:600;color:var(--bg);margin-bottom:2px}
+.trole{font-size:.68rem;color:rgba(7,7,9,.4)}
+
+/* FAQ */
+.faq{max-width:800px;margin:0 auto}
+.faq-list{margin-top:48px;border-top:1px solid var(--border)}
+.faq-item{border-bottom:1px solid var(--border)}
+.fq{width:100%;background:none;border:none;color:var(--text);padding:20px 0;font-family:var(--fs);font-size:1.15rem;font-weight:500;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:color .3s}
+.fq:hover{color:var(--accent)}
+.fq span{font-size:1.2rem;transition:transform .3s;color:var(--dim)}
+.faq-item.open .fq span{transform:rotate(45deg);color:var(--accent)}
+.fa{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-item.open .fa{max-height:200px}
+.fa p{padding:0 0 20px;font-size:.82rem;color:var(--dim);line-height:1.7}
+
+/* CTA */
+.ctaw{background:var(--accent);padding:120px 48px;text-align:center}
+.ctaw .stag{color:var(--bg);justify-content:center}.ctaw .stag::before{background:var(--bg)}
+.cta-h{font-family:var(--fs);font-size:clamp(2.5rem,6vw,5rem);font-weight:500;line-height:1;color:var(--bg);margin-bottom:20px}
+.ctaw .sdsc{color:rgba(7,7,9,.5);margin:0 auto;text-align:center}
+.cta-b{display:flex;gap:14px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.cta-b .btn-g{background:var(--bg);color:var(--accent)}.cta-b .btn-g:hover{box-shadow:0 0 40px rgba(0,0,0,.2)}
+.cta-b .btn-o{background:transparent;color:var(--bg);border-color:rgba(7,7,9,.2)}.cta-b .btn-o:hover{border-color:var(--bg);color:var(--bg)}
+
+/* FOOTER */
+footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400px;margin:0 auto}
+.ftg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:40px}
+.fttag{color:var(--dim);font-size:.8rem;margin-top:10px;max-width:260px;line-height:1.7;font-weight:300}
+.fc h4{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text2);margin-bottom:14px}
+.fc a{display:block;color:var(--dim);text-decoration:none;font-size:.78rem;margin-bottom:9px;transition:color .3s;font-weight:300}
+.fc a:hover{color:var(--text)}
+.ftbot{display:flex;justify-content:space-between;align-items:center;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+.ftbot p{font-size:.6rem;color:var(--dim);letter-spacing:.1em}
+.ftsoc{display:flex;gap:16px}
+.ftsoc a{color:var(--dim);text-decoration:none;font-size:.6rem;font-family:var(--fm);letter-spacing:.08em;text-transform:uppercase;transition:color .3s}
+.ftsoc a:hover{color:var(--accent)}
+
+/* POPUP */
+.popup-ov{position:fixed;inset:0;z-index:9997;background:rgba(7,7,9,.7);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .4s;padding:20px}
+.popup-ov.show{opacity:1;visibility:visible}
+.popup-box{background:var(--bg);border:1px solid var(--border);max-width:480px;width:100%;position:relative;transform:translateY(20px) scale(.96);transition:all .4s;overflow:hidden;border-radius:4px}
+.popup-ov.show .popup-box{transform:translateY(0) scale(1)}
+.popup-top{background:var(--accent);padding:32px 28px 28px}
+.popup-top h3{font-family:var(--fs);font-size:1.6rem;font-weight:500;color:var(--bg);line-height:1.1;margin-bottom:8px}
+.popup-top p{font-size:.82rem;color:rgba(7,7,9,.55)}
+.popup-body{padding:28px}
+.popup-body>p{font-size:.82rem;color:var(--dim);line-height:1.6;margin-bottom:20px}
+.popup-in{display:flex;gap:8px;flex-wrap:wrap}
+.popup-in input{flex:1;min-width:180px;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:var(--fd);font-size:.82rem;outline:none;transition:border .3s}
+.popup-in input:focus{border-color:var(--accent)}
+.popup-in input::placeholder{color:var(--dim)}
+.popup-in button{padding:12px 24px;background:var(--accent);color:var(--bg);border:none;font-family:var(--fd);font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.popup-in button:hover{background:var(--accent-b)}
+.popup-x{position:absolute;top:12px;right:12px;background:rgba(7,7,9,.15);border:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bg);font-size:1rem;border-radius:50%;transition:background .3s}
+.popup-x:hover{background:rgba(7,7,9,.3)}
+.popup-note{font-size:.65rem;color:var(--dim);margin-top:14px}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){.spl-g{grid-template-columns:1fr;gap:40px}.svg{grid-template-columns:repeat(2,1fr)}.ftg{grid-template-columns:1fr 1fr}.steps{grid-template-columns:repeat(3,1fr)}.dg{grid-template-columns:repeat(2,1fr)}.tg{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  nav{padding:14px 20px}.navr .nva,.nvc{display:none}.ham{display:flex}
+  section{padding:72px 20px}.pg{grid-template-columns:1fr}.svg{grid-template-columns:1fr}
+  .ftg{grid-template-columns:1fr}.cta-b,.h-btns{flex-direction:column;align-items:stretch}
+  .btn{text-align:center}.pfh{flex-direction:column;align-items:flex-start}
+  .hero{padding:120px 20px 80px}.h-title{font-size:clamp(2.8rem,10vw,4rem)}
+  .h-scroll{left:20px}.st{font-size:clamp(1.8rem,7vw,2.6rem)}
+  .cta-h{font-size:clamp(2rem,8vw,3rem)}
+  .spl-f{aspect-ratio:1/1.1}.spl-g{gap:32px}
+  .fb{overflow-x:auto;flex-wrap:nowrap;padding-bottom:8px;-webkit-overflow-scrolling:touch}
+  .fbtn{white-space:nowrap;flex-shrink:0}
+  .steps{grid-template-columns:1fr}.step-a{display:none}
+  .proc,.svcw,.reel-w,.ctaw,.testiw,.dashw{padding:72px 20px}
+  .tg,.dg{grid-template-columns:1fr}
+  .modal .inner{width:95%}.mcl{top:-36px}
+  .ftbot{flex-direction:column;align-items:flex-start}
+  .popup-in{flex-direction:column}.popup-in button{width:100%}
+}
+.mm{position:fixed;inset:0;z-index:999;background:rgba(7,7,9,.98);backdrop-filter:blur(30px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;opacity:0;visibility:hidden;transition:all .35s}
+.mm.open{opacity:1;visibility:visible}
+.mm a{font-family:var(--fs);font-size:2rem;font-weight:500;color:var(--text);text-decoration:none;transition:color .3s}
+.mm a:hover{color:var(--accent)}
+.mmx{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text);font-size:1.8rem;cursor:pointer}
+</style>
+</head>
+<body>
+
+<div class="pre" id="pre"><div class="pre-word">LTF</div><div class="pre-bar"><i></i></div></div>
+
+<div class="modal" id="mod"><div class="inner"><button class="mcl" onclick="cm()">close &times;</button><iframe id="mif" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
+
+<div class="popup-ov" id="popup"><div class="popup-box"><button class="popup-x" onclick="cpop()">&times;</button><div class="popup-top"><h3>Let's Bring Your Vision to Life</h3><p>Get a free consultation for your next project.</p></div><div class="popup-body"><p>Drop your email and our team will reach out within 24 hours — no strings attached.</p><div class="popup-in"><input type="email" placeholder="your@email.com" id="popEmail"><button onclick="spop()">Get Started</button></div><p class="popup-note">We respect your privacy. No spam, ever.</p></div></div></div>
+
+<nav id="nav">
+  <a href="#" class="logo">LTF <span>MEDIA</span></a>
+  <div class="navr"><a class="nva" href="#reel">Reel</a><a class="nva" href="#about">About</a><a class="nva" href="#work">Work</a><a class="nva" href="#services">Services</a><a class="nvc" href="#contact">Get in Touch</a></div>
+  <button class="ham" onclick="document.getElementById('mmenu').classList.add('open')"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mm" id="mmenu"><button class="mmx" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="#reel" onclick="this.parentElement.classList.remove('open')">Showreel</a><a href="#about" onclick="this.parentElement.classList.remove('open')">About</a><a href="#work" onclick="this.parentElement.classList.remove('open')">Work</a><a href="#services" onclick="this.parentElement.classList.remove('open')">Services</a><a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
+
+<section class="hero"><div class="hero-bg"></div><div class="hero-grain"></div>
+  <div class="hero-c">
+    <p class="h-eye">Video Production House</p>
+    <h1 class="h-title">Every Frame<br><em><span class="tw" id="tw">Elevated.</span></em></h1>
+    <p class="h-sub">We craft cinematic stories for brands shaping tomorrow. From concept to color grade — obsessive craft, zero compromise.</p>
+    <div class="h-btns"><a href="#reel" class="btn btn-g">Watch Showreel</a><a href="#work" class="btn btn-o">Explore Work</a></div>
+  </div>
+  <div class="h-scroll"><div class="sd"></div><span>Scroll</span></div>
+</section>
+
+<div class="cli"><div class="cli-t" id="clt"></div></div>
+
+<div class="reel-w" id="reel"><section class="reel" style="padding:0"><div class="rv" style="text-align:center"><div class="stag" style="justify-content:center">Showreel 2025</div><h2 class="st">See It in Motion</h2></div><div class="reel-f rv d2"><iframe src="https://www.youtube.com/embed/bI5ctXuoijA?rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></section></div>
+
+<section class="spl-sec" id="about"><div class="spl-g"><div class="spl-f rv"><iframe src="https://my.spline.design/portfoliovideocarousel-KDUhjFnObj1dQ3RedTiApCap-0Od/" loading="lazy" title="LTF 3D"></iframe><div class="spl-wm"></div></div><div><div class="rv"><div class="stag">Who We Are</div><h2 class="st">Where Vision<br>Meets Craft</h2></div><p class="sdsc rv d1" style="margin-bottom:32px">We work with the biggest brands — Swiggy, McDonald's, Royal Enfield, Volkswagen, Disney+ Hotstar, Zomato, Mahindra — bringing world-class post-production under one roof.</p><div><div class="feat rv d2"><div class="feat-ic">01</div><div><h4>Cinematic Direction</h4><p>Storyboard to final cut — every creative decision is intentional.</p></div></div><div class="feat rv d3"><div class="feat-ic">02</div><div><h4>World-Class Post</h4><p>Color grading, VFX, sound design, and motion graphics.</p></div></div><div class="feat rv d4"><div class="feat-ic">03</div><div><h4>Brand-First Thinking</h4><p>Every frame connects your brand to the right audience.</p></div></div></div></div></div></section>
+
+<div class="film-reel">
+  <div class="film-grain"></div>
+  <div class="sprocket"><div class="sprocket-holes" id="sh1"></div></div>
+  <div class="film-content">
+    <div class="film-track" id="filmTrack"></div>
+  </div>
+  <div class="sprocket bot"><div class="sprocket-holes" id="sh2"></div></div>
+</div>
+
+<section id="work"><div class="pf"><div class="pfh rv"><div><div class="stag">Selected Work</div><h2 class="st">Our Productions</h2></div><p class="sdsc">22 productions. 15+ brands. Click any to watch.</p></div><div class="fb rv d1" id="fbar"></div><div class="pg" id="pgrid"></div></div></section>
+
+<section id="services" class="svcw"><div class="svcs"><div style="text-align:center;max-width:600px;margin:0 auto" class="rv"><div class="stag" style="justify-content:center">Capabilities</div><h2 class="st">End-to-End Production</h2></div><div class="svg"><div class="sv rv"><div class="sv-n">01</div><div class="sv-t">Ad Films & TVCs</div><div class="sv-d">High-impact commercials for television and digital. Built for brand recall.</div></div><div class="sv rv d1"><div class="sv-n">02</div><div class="sv-t">Brand Films</div><div class="sv-d">Cinematic storytelling that captures your brand's essence.</div></div><div class="sv rv d2"><div class="sv-n">03</div><div class="sv-t">Corporate Videos</div><div class="sv-d">Professional films, investor decks, training content.</div></div><div class="sv rv d3"><div class="sv-n">04</div><div class="sv-t">Social & Digital</div><div class="sv-d">Thumb-stopping content optimized for every platform.</div></div><div class="sv rv d4"><div class="sv-n">05</div><div class="sv-t">Post Production</div><div class="sv-d">Editing, color grading, VFX, sound design, motion graphics.</div></div><div class="sv rv"><div class="sv-n">06</div><div class="sv-t">Campaign Strategy</div><div class="sv-d">From creative concept to multi-platform rollout.</div></div></div></div></section>
+
+<section class="proc"><div class="rv" style="text-align:center"><div class="stag" style="justify-content:center">How We Work</div><h2 class="st">From Idea to Screen</h2><p class="sdsc">A proven five-step pipeline that turns raw concepts into cinematic masterpieces.</p></div><div class="steps"><div class="step rv"><div class="step-n">01</div><div class="step-t">Discovery & Brief</div><div class="step-d">Deep-dive into your brand, audience, objectives, and vision.</div><div class="step-a">→</div></div><div class="step rv d1"><div class="step-n">02</div><div class="step-t">Concept & Script</div><div class="step-d">Creative ideation, scriptwriting, storyboarding, and mood boards.</div><div class="step-a">→</div></div><div class="step rv d2"><div class="step-n">03</div><div class="step-t">Pre-Production</div><div class="step-d">Casting, location scouting, crew assembly, and scheduling.</div><div class="step-a">→</div></div><div class="step rv d3"><div class="step-n">04</div><div class="step-t">Production</div><div class="step-d">Professional crews, cinema-grade equipment, obsessive attention.</div><div class="step-a">→</div></div><div class="step rv d4"><div class="step-n">05</div><div class="step-t">Post & Delivery</div><div class="step-d">Editing, color grading, VFX, sound design, and final mastering.</div></div></div></section>
+
+<div class="dashw"><div class="dash"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="dlive">Live Studio Dashboard</div><h2 class="st">The Numbers Don't Lie</h2></div><div class="dg"><div class="dc rv"><div class="dv" id="d1">0</div><div class="dl">Projects Delivered</div><div class="dsub">Commercials, brand films, corporate videos shipped to date.</div></div><div class="dc rv d1"><div class="dv" id="d2">0</div><div class="dl">Hours of Content</div><div class="dsub">Raw footage captured, edited, graded, and delivered.</div></div><div class="dc rv d2"><div class="dv" id="d3">0</div><div class="dl">Frames Crafted</div><div class="dsub">Every frame hand-reviewed at 24fps.</div></div><div class="dc rv d3"><div class="dv" id="d4">0</div><div class="dl">Brand Partners</div><div class="dsub">Trusted by brands that demand excellence.</div></div></div></div></div>
+
+<div class="testiw"><div class="testi"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="stag" style="justify-content:center">Testimonials</div><h2 class="st">What Brands Say</h2></div><div class="tg"><div class="tc rv"><p class="tq">LTF Media took our brief and turned it into something we never imagined. The production quality rivals agencies three times their size.</p><div class="ta"><div class="tav">SK</div><div><div class="tname">Sanjay Kumar</div><div class="trole">Marketing Head, Swiggy</div></div></div></div><div class="tc rv d1"><p class="tq">From script to screen in under three weeks — and the quality didn't slip for a second. They understand the urgency of brand storytelling.</p><div class="ta"><div class="tav">PR</div><div><div class="tname">Priya Rao</div><div class="trole">Brand Director, McDonald's India</div></div></div></div><div class="tc rv d2"><p class="tq">The Polo farewell film made grown adults cry at our internal screening. That's the power of great filmmaking.</p><div class="ta"><div class="tav">AM</div><div><div class="tname">Akash Mehta</div><div class="trole">Creative Lead, Volkswagen</div></div></div></div></div></div></div>
+
+<section><div class="faq"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="stag" style="justify-content:center">FAQ</div><h2 class="st">Common Questions</h2></div><div class="faq-list"><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">What types of videos do you produce?<span>+</span></button><div class="fa"><p>Ad films, TVCs, brand films, corporate videos, music videos, social content, documentaries, event coverage, motion graphics, and CGI.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">How long does a typical production take?<span>+</span></button><div class="fa"><p>Social ads: 5–7 days. Full commercials or brand films: 3–6 weeks from brief to delivery. Always on schedule.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">What's the typical budget range?<span>+</span></button><div class="fa"><p>Depends on complexity, duration, talent, and post-production. We work with startups and Fortune 500s alike.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">Do you handle everything in-house?<span>+</span></button><div class="fa"><p>Yes — concept, scriptwriting, shooting, editing, color grading, VFX, sound design, and delivery. Full pipeline.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">Can you work with our existing agency?<span>+</span></button><div class="fa"><p>Absolutely. We frequently collaborate with agencies, media buyers, and brand teams. We adapt to your workflow.</p></div></div></div></div></section>
+
+<section id="contact" class="ctaw" style="padding:0"><div style="padding:120px 48px"><div class="stag" style="justify-content:center">Let's Create Together</div><h2 class="cta-h">Ready to Make Something Iconic?</h2><p class="sdsc" style="margin:0 auto;text-align:center">Whether it's a 15-second reel or a feature film — same obsessive craft, every project.</p><div class="cta-b"><a href="https://www.facebook.com/ltfmedia" target="_blank" class="btn btn-g">Facebook</a><a href="https://www.youtube.com/playlist?list=PLJZ-s_2hE8aNb1fGNgqV84PohrZ9Fxg5d" target="_blank" class="btn btn-o">YouTube</a></div></div></section>
+
+<footer><div class="ftg"><div><a href="#" class="logo">LTF <span>MEDIA</span></a><p class="fttag">Cinematic stories that move people, build brands, shape culture. Every frame elevated.</p></div><div class="fc"><h4>Navigate</h4><a href="#reel">Reel</a><a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a></div><div class="fc"><h4>Services</h4><a href="#services">Ad Films</a><a href="#services">Brand Films</a><a href="#services">Corporate</a><a href="#services">Post Production</a></div><div class="fc"><h4>Connect</h4><a href="https://www.facebook.com/ltfmedia" target="_blank">Facebook</a><a href="https://www.youtube.com/playlist?list=PLJZ-s_2hE8aNb1fGNgqV84PohrZ9Fxg5d" target="_blank">YouTube</a></div></div><div class="ftbot"><p>&copy; 2026 LTF Media. All rights reserved.</p><div class="ftsoc"><a href="https://www.facebook.com/ltfmedia" target="_blank">FB</a><a href="https://www.youtube.com/playlist?list=PLJZ-s_2hE8aNb1fGNgqV84PohrZ9Fxg5d" target="_blank">YT</a></div></div></footer>
+
+<script>
+const V=[{id:"bI5ctXuoijA",t:"LTF Media Showreel 2025",g:"Showreel",c:"brand",d:"End-to-end creative capabilities across commercials, social campaigns, and live-action."},{id:"B6wmKmlvr8I",t:"FE Studios Showreel 2025",g:"Showreel",c:"brand",d:"Versatile post-production across commercials, branded content, CGI, podcasts."},{id:"N7k63tr3zAc",t:"TIIVRA — City Freedom",g:"Lifestyle",c:"lifestyle",d:"Breaking free from modern city life through motorcycling with TIIVRA."},{id:"1SAesDS7PXU",t:"Swiggy Summer Earnings",g:"Commercial",c:"commercial",d:"Delivery executives earn extra through incentives during IPL, Holi, and Ramadan."},{id:"WvW3YQEYgoc",t:"Mahindra Lifespaces",g:"Brand Film",c:"brand",d:"A home is more than a place — it's where life's stories begin."},{id:"fXldVNCTfbY",t:"Home Credit — Dreams",g:"Commercial",c:"commercial",d:"A father buys his daughter a phone through accessible financing."},{id:"TzcOCr6_Ges",t:"Feeding India × Zomato",g:"Campaign",c:"campaign",d:"Every child deserves the nutrition to achieve their dreams."},{id:"CzytS0hTVRU",t:"Rambhau Mhalgi Prabodhini",g:"Corporate",c:"corporate",d:"Visual tour of RMP's modern training campus and facilities."},{id:"jeedqq-MFLA",t:"Royal Enfield — Escape",g:"Lifestyle",c:"lifestyle",d:"Breaking free from the urban rat race on a Royal Enfield."},{id:"nCHjoaMfeww",t:"RE Hunter 350",g:"Brand Film",c:"brand",d:"Strategic brand evolution targeting Gen Z — urban street culture icon."},{id:"15TbxhzrzDs",t:"VW Polo — Legacy Farewell",g:"Brand Film",c:"brand",d:"A nostalgic ode as the Polo ends its iconic India journey."},{id:"K5PhBEG4uW0",t:"McDonald's Big Mac",g:"Commercial",c:"commercial",d:"McDonald's sidelined Sehwag to make Big Mac India's biggest star."},{id:"8NU2kOotTjg",t:"RJ Abhinav × IIT Bombay",g:"Campaign",c:"campaign",d:"RJ Abhinav as taxi driver navigating IIT life hilariously."},{id:"_PCMG-BZbJY",t:"PharmaAccess",g:"Corporate",c:"corporate",d:"Advanced pharmaceutical manufacturing — lab to improving lives."},{id:"1huuiWwby4E",t:"Dunkin' — Dreams Brewing",g:"Lifestyle",c:"lifestyle",d:"The creative community at Dunkin' — always brewing."},{id:"4LdzY-us1I8",t:"Emami Double Bull Cement",g:"Commercial",c:"commercial",d:"Superior cement strength demonstrated by a charging bull."},{id:"6Cp2af5tOHs",t:"The Serenes — Luxury",g:"Brand Film",c:"brand",d:"Uncubicle your life — modern villas, nature-oriented luxury."},{id:"pGkTLuIOsOg",t:"Taiwan Excellence Gaming",g:"Campaign",c:"campaign",d:"India's premier esports championship — Valorant and Pokémon Unite."},{id:"YE21tLaQOoQ",t:"Kwality Wall's — Joy",g:"Commercial",c:"commercial",d:"Ice cream as essential indulgence during tough times."},{id:"iXHh6lgCEHQ",t:"Sonata — Hum Na Rukenge",g:"Campaign",c:"campaign",d:"Honoring frontline workers — the human spirit remains unstoppable."},{id:"4ZHDUSZlaIA",t:"McDonald's Golden Guarantee",g:"Commercial",c:"commercial",d:"Same taste, safely delivered — contactless during the pandemic."},{id:"pt-oGsh9G-g",t:"Disney+ Hotstar",g:"Campaign",c:"campaign",d:"The ultimate streaming solution for parents — safe kids' content."}];
+const CL=["Swiggy","McDonald's","Royal Enfield","Volkswagen","Mahindra","Zomato","Disney+ Hotstar","Dunkin'","Home Credit","Sonata","Emami","TIIVRA","Kwality Wall's","PharmaAccess","Taiwan Excellence"];
+const CATS=[{l:"All",v:"all"},{l:"Commercials",v:"commercial"},{l:"Brand Films",v:"brand"},{l:"Lifestyle",v:"lifestyle"},{l:"Corporate",v:"corporate"},{l:"Campaigns",v:"campaign"}];
+
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('pre').classList.add('out'),2200)});
+!function(){const t=document.getElementById('clt');[...CL,...CL].forEach((n,i)=>{const s=document.createElement('span');s.className='cli-n';s.textContent=n;t.appendChild(s);if(i<CL.length*2-1){const d=document.createElement('span');d.className='cli-d';d.innerHTML='&#9670;';t.appendChild(d)}})}();
+!function(){const fb=document.getElementById('fbar');CATS.forEach((c,i)=>{const b=document.createElement('button');b.className='fbtn'+(i===0?' on':'');b.textContent=c.l;b.dataset.f=c.v;b.onclick=function(){fb.querySelectorAll('.fbtn').forEach(x=>x.classList.remove('on'));this.classList.add('on');bg(this.dataset.f)};fb.appendChild(b)})}();
+function bg(f){const g=document.getElementById('pgrid');g.innerHTML='';(f==='all'?V:V.filter(v=>v.c===f)).forEach((v,i)=>{const c=document.createElement('div');c.className='vc rv'+(i%4===1?' d1':i%4===2?' d2':i%4===3?' d3':'');c.onclick=()=>om(v.id);c.innerHTML=`<div class="tmb"><img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.t}" loading="lazy"><div class="play"><div class="plc"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div><div class="info"><div class="tag">${v.g}</div><div class="ttl">${v.t}</div><div class="dsc">${v.d}</div></div>`;g.appendChild(c)});g.querySelectorAll('.rv').forEach(el=>ro.observe(el))}
+function om(id){document.getElementById('mif').src=`https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;document.getElementById('mod').classList.add('open');document.body.style.overflow='hidden'}
+function cm(){document.getElementById('mod').classList.remove('open');document.getElementById('mif').src='';document.body.style.overflow=''}
+document.getElementById('mod').addEventListener('click',e=>{if(e.target===e.currentTarget)cm()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm()});
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50));
+const ro=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})},{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
+
+// Typewriter
+const twEl=document.getElementById('tw'),twW=['Elevated.','Cinematic.','Crafted.','Iconic.','Refined.'];
+let twI=0,twC=twW[0].length,twD=true;
+function twTick(){const w=twW[twI];if(twD){twC--;twEl.textContent=w.substring(0,twC);if(twC===0){twD=false;twI=(twI+1)%twW.length;setTimeout(twTick,400);return}setTimeout(twTick,60)}else{const nw=twW[twI];twC++;twEl.textContent=nw.substring(0,twC);if(twC===nw.length){twD=true;setTimeout(twTick,2500);return}setTimeout(twTick,80)}}
+setTimeout(twTick,3500);
+
+// Dashboard
+const dd=[{el:'d1',t:156,s:'+'},{el:'d2',t:2400,s:'+'},{el:'d3',t:8.6,s:'M',dec:true},{el:'d4',t:47,s:'+'}];
+const dObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){dd.forEach(d=>{const el=document.getElementById(d.el);if(!el)return;let cur=0;const inc=d.t/50;const tm=setInterval(()=>{cur+=inc;if(cur>=d.t){cur=d.t;clearInterval(tm);if(!d.dec)setInterval(()=>{cur+=Math.random()>.7?1:0;el.textContent=Math.floor(cur)+d.s},3000)}el.textContent=(d.dec?cur.toFixed(1):Math.floor(cur))+d.s},30)});dObs.disconnect()}})},{threshold:.3});
+const dEl=document.querySelector('.dg');if(dEl)dObs.observe(dEl);
+
+// Popup
+setTimeout(()=>{if(!sessionStorage.getItem('pc')){document.getElementById('popup').classList.add('show');document.body.style.overflow='hidden'}},30000);
+function cpop(){document.getElementById('popup').classList.remove('show');document.body.style.overflow='';sessionStorage.setItem('pc','1')}
+function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
+document.getElementById('popup').addEventListener('click',e=>{if(e.target===e.currentTarget)cpop()});
+
+// Film reel
+!function(){
+  const items=['Ad Films','Brand Stories','Commercials','Music Videos','Corporate Films','Social Content','Post Production','Motion Graphics'];
+  const track=document.getElementById('filmTrack');
+  [...items,...items].forEach((t,i)=>{
+    const f=document.createElement('div');f.className='film-frame';
+    f.innerHTML=`<span>${t}</span><span class="fc">${String(i+1).padStart(3,'0')}</span>`;
+    track.appendChild(f);
+  });
+  // Sprocket holes
+  ['sh1','sh2'].forEach(id=>{
+    const el=document.getElementById(id);
+    for(let i=0;i<60;i++){const h=document.createElement('div');h.className='sprocket-hole';el.appendChild(h)}
+  });
+}();
+
+bg('all');
+</script>
+</body>
+</html>
