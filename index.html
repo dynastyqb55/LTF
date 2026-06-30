@@ -553,7 +553,7 @@ const dEl=document.querySelector('.dg');if(dEl)dObs.observe(dEl);
 // Popup
 setTimeout(()=>{if(!sessionStorage.getItem('pc')){document.getElementById('popup').classList.add('show');document.body.style.overflow='hidden'}},30000);
 function cpop(){document.getElementById('popup').classList.remove('show');document.body.style.overflow='';sessionStorage.setItem('pc','1')}
-function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
+function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value})}).catch(()=>{});setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
 document.getElementById('popup').addEventListener('click',e=>{if(e.target===e.currentTarget)cpop()});
 
 // Film reel
