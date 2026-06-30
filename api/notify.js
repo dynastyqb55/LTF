@@ -26,10 +26,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email' });
   }
 
-  // Required: what info/materials to furnish before the meeting.
+  // Required: what info/materials to furnish before the meeting (min 50 chars).
   const info = String(body.info || '').trim().slice(0, 5000);
-  if (!info) {
-    return res.status(400).json({ error: 'Missing required details' });
+  if (info.length < 50) {
+    return res.status(400).json({ error: 'Details must be at least 50 characters' });
   }
 
   const TO = process.env.NOTIFY_TO || 'letscreate@ltfmedia.agency';
