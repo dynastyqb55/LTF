@@ -10,8 +10,8 @@
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0a0a0a">
 <link rel="canonical" href="https://ltfmedia.agency/">
-<link rel="icon" type="image/png" href="assets/ltf-logo-bottom-band-02.png">
-<link rel="apple-touch-icon" href="assets/ltf-logo-bottom-band-02.png">
+<link rel="icon" type="image/png" href="assets/ltf-favicon-02.png">
+<link rel="apple-touch-icon" href="assets/ltf-favicon-02.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="LTF Media">
 <meta property="og:title" content="LTF Media — Cinematic Ad Films, Brand Stories & Post-Production">
@@ -216,12 +216,12 @@ section{padding:100px 48px}
 .sv-t{font-family:var(--fs);font-size:1.2rem;font-weight:500;margin-bottom:8px;color:var(--text)}
 .sv-d{color:rgba(255,255,255,.55);font-size:.78rem;line-height:1.7}
 /* 5-block grid: 4 corners + big center spanning both rows */
-.svg5{display:grid;grid-template-columns:1fr 1.2fr 1fr;grid-template-rows:auto auto auto;gap:24px;align-items:stretch}
+.svg5{display:grid;grid-template-columns:1fr 1.4fr 1fr;grid-template-rows:1fr 1fr;gap:16px;align-items:stretch}
 .svg5 .sv-tl{grid-column:1;grid-row:1}
 .svg5 .sv-tr{grid-column:3;grid-row:1}
-.svg5 .sv-bl{grid-column:1;grid-row:3}
-.svg5 .sv-br{grid-column:3;grid-row:3}
-.svg5 .sv-center{grid-column:2;grid-row:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:48px 36px;background:linear-gradient(160deg,#0e0815 0%,#1a0d24 60%,#0a0a0a 100%);border:1px solid rgba(123,63,169,.35);box-shadow:0 18px 60px rgba(123,63,169,.18)}
+.svg5 .sv-bl{grid-column:1;grid-row:2}
+.svg5 .sv-br{grid-column:3;grid-row:2}
+.svg5 .sv-center{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:48px 36px;background:linear-gradient(160deg,#0e0815 0%,#1a0d24 60%,#0a0a0a 100%);border:1px solid rgba(123,63,169,.35);box-shadow:0 18px 60px rgba(123,63,169,.18)}
 .svg5 .sv-center .sv-n{color:var(--accent-3);font-size:.6rem}
 .svg5 .sv-center .sv-t{font-family:var(--fs);font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.05;margin-bottom:14px;background:linear-gradient(135deg,#fff 0%,var(--accent-b) 80%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .svg5 .sv-center .sv-d{font-size:.95rem;line-height:1.7;color:rgba(255,255,255,.78);max-width:420px}
@@ -350,6 +350,11 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 .popup-x{position:absolute;top:12px;right:12px;background:rgba(7,7,9,.15);border:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bg);font-size:1rem;border-radius:50%;transition:background .3s}
 .popup-x:hover{background:rgba(7,7,9,.3)}
 .popup-note{font-size:.65rem;color:var(--dim);margin-top:14px}
+.popup-disc{font-size:.62rem;color:var(--dim);line-height:1.55;margin-top:10px}
+.pp-tip{position:relative;color:var(--text2);text-decoration:underline;text-underline-offset:2px;cursor:help}
+.pp-tip .pp-tipbox{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);width:280px;max-width:78vw;background:#fff;color:#1a1a1f;font-size:.66rem;line-height:1.55;text-align:left;padding:12px 14px;border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,.45);opacity:0;visibility:hidden;transition:opacity .25s,transform .25s;z-index:5;text-transform:none;letter-spacing:normal;pointer-events:none}
+.pp-tip .pp-tipbox::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#fff}
+.pp-tip:hover .pp-tipbox{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
 
 /* REVEAL */
 .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
@@ -381,15 +386,25 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 .mm a{font-family:var(--fs);font-size:2rem;font-weight:500;color:var(--text);text-decoration:none;transition:color .3s}
 .mm a:hover{color:var(--accent)}
 .mmx{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text);font-size:1.8rem;cursor:pointer}
+
+/* POWERED BY — left edge badge */
+.pwr{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 12px 16px;background:rgba(7,7,9,.55);backdrop-filter:blur(10px);border:1px solid var(--border);border-left:none;border-radius:0 14px 14px 0;box-shadow:0 10px 40px rgba(0,0,0,.35);text-decoration:none;transition:all .35s}
+.pwr:hover{background:rgba(123,63,169,.14);border-color:var(--border-a)}
+.pwr span{font-family:var(--fm);font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);transition:color .3s}
+.pwr:hover span{color:var(--accent-b)}
+.pwr img{width:46px;height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(123,63,169,.4))}
+@media(max-width:768px){.pwr{padding:10px 8px 12px;gap:7px}.pwr img{width:34px}.pwr span{font-size:.44rem;letter-spacing:.28em}}
 </style>
 </head>
 <body>
+
+<a class="pwr" href="#" aria-label="Powered by FE Studios"><span>Powered By</span><img src="assets/fe-studios-badge.png" alt="FE Studios"></a>
 
 <div class="pre" id="pre"><img class="pre-logo" src="assets/ltf-logo-v3.jpg" alt="LTF Media"><div class="pre-bar"><i></i></div></div>
 
 <div class="modal" id="mod"><div class="inner"><button class="mcl" onclick="cm()">close &times;</button><iframe id="mif" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
 
-<div class="popup-ov" id="popup"><div class="popup-box"><button class="popup-x" onclick="cpop()">&times;</button><div class="popup-top"><h3>Let's Bring Your Vision to Life</h3><p>Get a free consultation for your next project.</p></div><div class="popup-body"><p>Drop your email and our team will reach out within 24 hours — no strings attached.</p><div class="popup-in"><input type="email" placeholder="your@email.com" id="popEmail"><button onclick="spop()">Get Started</button></div><p class="popup-note">We respect your privacy. No spam, ever.</p></div></div></div>
+<div class="popup-ov" id="popup"><div class="popup-box"><button class="popup-x" onclick="cpop()">&times;</button><div class="popup-top"><h3>Let's Bring Your Vision to Life</h3><p>Get a free consultation for your next project.</p></div><div class="popup-body"><p>Drop your email and our team will reach out within 24 hours — no strings attached.</p><div class="popup-in"><input type="email" placeholder="your@email.com" id="popEmail"><button onclick="spop()">Get Started</button></div><p class="popup-note">We respect your privacy. No spam, ever.</p><p class="popup-disc">By submitting, you agree to our <span class="pp-tip">LTF Media Privacy Policy<span class="pp-tipbox">We collect your name, phone number and email address to contact you regarding our video editing and post-production services. We do not sell or share your personal information with third parties.</span></span>.</p></div></div></div>
 
 <nav id="nav">
   <a href="#" class="logo"><img src="assets/ltf-logo-bottom-band-02.png" alt="LTF Media"></a>
@@ -430,15 +445,15 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 
 <section class="proc"><div class="rv" style="text-align:center"><div class="stag" style="justify-content:center">How We Work</div><h2 class="st">From Idea to Screen</h2><p class="sdsc">A proven five-step pipeline that turns raw concepts into cinematic masterpieces.</p></div><div class="steps"><div class="step rv"><div class="step-n">01</div><div class="step-t">Discovery & Brief</div><div class="step-d">Deep-dive into your brand, audience, objectives, and vision.</div><div class="step-a">→</div></div><div class="step rv d1"><div class="step-n">02</div><div class="step-t">Concept & Script</div><div class="step-d">Creative ideation, scriptwriting, and mood boards.</div><div class="step-a">→</div></div><div class="step rv d2"><div class="step-n">03</div><div class="step-t">Pre-Production</div><div class="step-d">Casting, location scouting, crew assembly, and scheduling.</div><div class="step-a">→</div></div><div class="step rv d3"><div class="step-n">04</div><div class="step-t">Production</div><div class="step-d">Professional crews and cinema-grade equipment, on schedule.</div><div class="step-a">→</div></div><div class="step rv d4"><div class="step-n">05</div><div class="step-t">Post & Delivery</div><div class="step-d">Editing, color grading, VFX, sound design, and final mastering.</div></div></div></section>
 
-<div class="dashw"><div class="dash"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="dlive">Live Studio Dashboard</div><h2 class="st">The Numbers Don't Lie</h2></div><div class="dg"><div class="dc rv"><div class="dv" id="d1">0</div><div class="dl">Numbers</div><div class="dsub">Commercials, brand films, and corporate videos shipped to date.</div></div><div class="dc rv d1"><div class="dv" id="d2">0</div><div class="dl">Frames</div><div class="dsub">Hand-graded frames delivered to screens worldwide.</div></div><div class="dc rv d2"><div class="dv" id="d3">0</div><div class="dl">Clients</div><div class="dsub">Brands that trust us with their most important stories.</div></div><div class="dc rv d3"><div class="dv" id="d4">0</div><div class="dl">Followers</div><div class="dsub">Community engaged across our owned channels.</div></div></div></div></div>
+<div class="dashw"><div class="dash"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="dlive">Live Studio Dashboard</div><h2 class="st">The Numbers Don't Lie</h2></div><div class="dg"><div class="dc rv"><div class="dv" id="d1">0</div><div class="dl">Deliverables</div><div class="dsub">Commercials, brand films, and corporate videos shipped to date.</div></div><div class="dc rv d1"><div class="dv" id="d2">0</div><div class="dl">Frames</div><div class="dsub">Hand-graded frames delivered to screens worldwide.</div></div><div class="dc rv d2"><div class="dv" id="d3">0</div><div class="dl">Clients</div><div class="dsub">Brands that trust us with their most important stories.</div></div><div class="dc rv d3"><div class="dv" id="d4">0</div><div class="dl">Followers</div><div class="dsub">Community engaged across our owned channels.</div></div></div></div></div>
 
-<div class="testiw"><div class="testi"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="stag" style="justify-content:center">Testimonials</div><h2 class="st">What Brands Say</h2></div><div class="tg" style="grid-template-columns:1fr;max-width:720px;margin-left:auto;margin-right:auto"><div class="tc rv"><p class="tq">Working with the LTF team has always been a pleasure. They understand the brief, bring strong ideas, and never miss a deadline. Above all, they're great people — always a pleasure to collaborate with LTF.</p><div class="ta"><div class="tav">RD</div><div><div class="tname">Rahul Dagli</div><div class="trole">Producer, Collective Creative Labs</div></div></div></div></div></div></div>
+<div class="testiw"><div class="testi"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="stag" style="justify-content:center">Testimonials</div><h2 class="st">What Brands Say</h2></div><div class="tg" style="grid-template-columns:1fr 1fr;max-width:1000px;margin-left:auto;margin-right:auto"><div class="tc rv"><p class="tq">Working with the LTF team has always been a pleasure. They understand the brief, bring strong ideas, and never miss a deadline. Above all, they're great people — always a pleasure to collaborate with LTF.</p><div class="ta"><div class="tav">RD</div><div><div class="tname">Rahul Dagli</div><div class="trole">Producer, Collective Creative Labs</div></div></div></div><div class="tc rv"><p class="tq">I've worked with the LTF team on multiple occasions, including the 2024 Effies campaigns for Netflix, Piramal and Instagram. They consistently understand the brief, bring strong ideas to the table, and deliver on time.</p><div class="ta"><div class="tav">SG</div><div><div class="tname">Shyan Gershon</div><div class="trole">Creative Director</div></div></div></div></div></div></div>
 
 <section><div class="faq"><div class="rv" style="text-align:center;max-width:600px;margin:0 auto"><div class="stag" style="justify-content:center">FAQ</div><h2 class="st">Common Questions</h2></div><div class="faq-list"><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">What types of videos do you produce?<span>+</span></button><div class="fa"><p>Ad films, TVCs, brand films, corporate videos, music videos, social content, documentaries, event coverage, motion graphics, and CGI.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">How long does a typical production take?<span>+</span></button><div class="fa"><p>Social ads: 5–7 days. Full commercials or brand films: 3–6 weeks from brief to delivery. Always on schedule.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">What's the typical budget range?<span>+</span></button><div class="fa"><p>Depends on complexity, duration, talent, and post-production. We work with startups and Fortune 500s alike.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">Do you handle everything in-house?<span>+</span></button><div class="fa"><p>Yes — concept, scriptwriting, shooting, editing, color grading, VFX, sound design, and delivery. Full pipeline.</p></div></div><div class="faq-item" onclick="this.classList.toggle('open')"><button class="fq">Can you work with our existing agency?<span>+</span></button><div class="fa"><p>Absolutely. We frequently collaborate with agencies, media buyers, and brand teams. We adapt to your workflow.</p></div></div></div></div></section>
 
-<section id="contact" class="ctaw" style="padding:0"><div style="padding:120px 48px"><div class="stag" style="justify-content:center">Let's Create Together</div><h2 class="cta-h">Ready to Make Something <em class="tw-em tw-em-light"><span class="tw tw-fade" data-tw='["Iconic","Creative","Timeless","Ideal","Traditional"]'>Iconic</span></em>?</h2><p class="sdsc" style="margin:0 auto;text-align:center">Whether it's a 15-second reel or a feature film — same craft, every project.</p><div class="cta-b"><a href="https://wa.me/919167323135" target="_blank" class="btn btn-g">WhatsApp</a><a href="https://www.facebook.com/ltfmedia" target="_blank" class="btn btn-g">Facebook</a><a href="https://www.instagram.com/ltf_media_/" target="_blank" class="btn btn-g">Instagram</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank" class="btn btn-g">LinkedIn</a></div><p class="cta-contact">letscreate@ltfmedia.agency &nbsp;·&nbsp; +91 91673 23135</p></div></section>
+<section id="contact" class="ctaw" style="padding:0"><div style="padding:120px 48px"><div class="stag" style="justify-content:center">Let's Create Together</div><h2 class="cta-h">Ready to Make Something <em class="tw-em tw-em-light"><span class="tw tw-fade" data-tw='["Iconic","Creative","Timeless","Ideal","Traditional"]'>Iconic</span></em>?</h2><p class="sdsc" style="margin:0 auto;text-align:center">Whether it's a 15-second reel or a feature film — same craft, every project.</p><div class="cta-b"><a href="https://www.facebook.com/ltfmedia" target="_blank" class="btn btn-g">Facebook</a><a href="https://www.instagram.com/ltf_media_/" target="_blank" class="btn btn-g">Instagram</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank" class="btn btn-g">LinkedIn</a></div><p class="cta-contact">letscreate@ltfmedia.agency</p></div></section>
 
-<footer><div class="ftg"><div><a href="#" class="logo"><img src="assets/ltf-logo-bottom-band-02.png" alt="LTF Media logo"></a><p class="fttag">Cinematic stories that move people, build brands, shape culture. Every frame elevated.</p></div><div class="fc"><h4>Navigate</h4><a href="#reel">Reel</a><a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a></div><div class="fc"><h4>Services</h4><a href="#services">Ad Films &amp; TVCs</a><a href="#services">Brand Films</a><a href="#services">Corporate Videos</a><a href="#services">Post-Production</a></div><div class="fc"><h4>Connect</h4><a href="mailto:letscreate@ltfmedia.agency">letscreate@ltfmedia.agency</a><a href="tel:+919167323135">+91 91673 23135</a><a href="https://wa.me/919167323135" target="_blank">WhatsApp</a><a href="https://www.facebook.com/ltfmedia" target="_blank">Facebook</a><a href="https://www.instagram.com/ltf_media_/" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank">LinkedIn</a></div></div><div class="ftbot"><p>&copy; 2026 LTF Media. All rights reserved.</p><div class="ftsoc"><a href="https://www.facebook.com/ltfmedia" target="_blank">FB</a><a href="https://www.instagram.com/ltf_media_/" target="_blank">IG</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank">LI</a></div></div></footer>
+<footer><div class="ftg"><div><a href="#" class="logo"><img src="assets/ltf-logo-bottom-band-02.png" alt="LTF Media logo"></a><p class="fttag">Cinematic stories that move people, build brands, shape culture. Every frame elevated.</p></div><div class="fc"><h4>Navigate</h4><a href="#reel">Reel</a><a href="#about">About</a><a href="#work">Work</a><a href="#services">Services</a></div><div class="fc"><h4>Services</h4><a href="#services">Ad Films &amp; TVCs</a><a href="#services">Brand Films</a><a href="#services">Corporate Videos</a><a href="#services">Post-Production</a></div><div class="fc"><h4>Connect</h4><a href="mailto:letscreate@ltfmedia.agency">letscreate@ltfmedia.agency</a><a href="https://wa.me/919167323135" target="_blank">WhatsApp</a><a href="https://www.facebook.com/ltfmedia" target="_blank">Facebook</a><a href="https://www.instagram.com/ltf_media_/" target="_blank">Instagram</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank">LinkedIn</a></div></div><div class="ftbot"><p>&copy; 2026 LTF Media. All rights reserved.</p><div class="ftsoc"><a href="https://www.facebook.com/ltfmedia" target="_blank">FB</a><a href="https://www.instagram.com/ltf_media_/" target="_blank">IG</a><a href="https://www.linkedin.com/company/ltfmedia/" target="_blank">LI</a></div></div></footer>
 
 <script>
 const V=[
@@ -529,14 +544,16 @@ document.querySelectorAll('.tw[data-tw]').forEach((el,i)=>{
 });
 
 // Dashboard
-const dd=[{el:'d1',t:156,s:'+'},{el:'d2',t:8.6,s:'M',dec:true},{el:'d3',t:50,s:'+'},{el:'d4',t:25,s:'K+'}];
-const dObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){dd.forEach(d=>{const el=document.getElementById(d.el);if(!el)return;let cur=0;const inc=d.t/80;const tm=setInterval(()=>{cur+=inc;if(cur>=d.t){cur=d.t;clearInterval(tm);if(!d.dec)setInterval(()=>{cur+=Math.random()>.7?1:0;el.textContent=Math.floor(cur)+d.s},3000)}el.textContent=(d.dec?cur.toFixed(1):Math.floor(cur))+d.s},45)});dObs.disconnect()}})},{threshold:.3});
+// Baseline: 2026-06-30. Deliverables +1 every week, Clients +1 every 2 weeks. Frames & Followers stay constant.
+const dBase=Date.UTC(2026,5,30),dDays=Math.max(0,Math.floor((Date.now()-dBase)/864e5));
+const dd=[{el:'d1',t:156+Math.floor(dDays/7),s:'+'},{el:'d2',t:8.6,s:'M',dec:true},{el:'d3',t:50+Math.floor(dDays/14),s:'+'},{el:'d4',t:25,s:'K+'}];
+const dObs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){dd.forEach(d=>{const el=document.getElementById(d.el);if(!el)return;let cur=0;const inc=d.t/80;const tm=setInterval(()=>{cur+=inc;if(cur>=d.t){cur=d.t;clearInterval(tm)}el.textContent=(d.dec?cur.toFixed(1):Math.floor(cur))+d.s},45)});dObs.disconnect()}})},{threshold:.3});
 const dEl=document.querySelector('.dg');if(dEl)dObs.observe(dEl);
 
 // Popup
 setTimeout(()=>{if(!sessionStorage.getItem('pc')){document.getElementById('popup').classList.add('show');document.body.style.overflow='hidden'}},30000);
 function cpop(){document.getElementById('popup').classList.remove('show');document.body.style.overflow='';sessionStorage.setItem('pc','1')}
-function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
+function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value})}).catch(()=>{});setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
 document.getElementById('popup').addEventListener('click',e=>{if(e.target===e.currentTarget)cpop()});
 
 // Film reel
