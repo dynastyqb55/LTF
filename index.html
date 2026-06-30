@@ -341,11 +341,12 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 .popup-top p{font-size:.82rem;color:rgba(255,255,255,.75)}
 .popup-body{padding:28px}
 .popup-body>p{font-size:.82rem;color:var(--dim);line-height:1.6;margin-bottom:20px}
-.popup-in{display:flex;gap:8px;flex-wrap:wrap}
-.popup-in input{flex:1;min-width:180px;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:var(--fd);font-size:.82rem;outline:none;transition:border .3s}
-.popup-in input:focus{border-color:var(--accent)}
-.popup-in input::placeholder{color:var(--dim)}
-.popup-in button{padding:12px 24px;background:var(--accent);color:var(--bg);border:none;font-family:var(--fd);font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+.popup-in{display:flex;flex-direction:column;gap:8px}
+.popup-in input,.popup-in textarea{width:100%;padding:12px 16px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:var(--fd);font-size:.82rem;outline:none;transition:border .3s}
+.popup-in textarea{resize:vertical;min-height:74px;line-height:1.5}
+.popup-in input:focus,.popup-in textarea:focus{border-color:var(--accent)}
+.popup-in input::placeholder,.popup-in textarea::placeholder{color:var(--dim)}
+.popup-in button{margin-top:2px;padding:13px 24px;background:var(--accent);color:var(--bg);border:none;font-family:var(--fd);font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s}
 .popup-in button:hover{background:var(--accent-b)}
 .popup-x{position:absolute;top:12px;right:12px;background:rgba(7,7,9,.15);border:none;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--bg);font-size:1rem;border-radius:50%;transition:background .3s}
 .popup-x:hover{background:rgba(7,7,9,.3)}
@@ -388,8 +389,8 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 .mmx{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--text);font-size:1.8rem;cursor:pointer}
 
 /* POWERED BY — left edge badge */
-.pwr{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 12px 16px;background:rgba(7,7,9,.55);backdrop-filter:blur(10px);border:1px solid var(--border);border-left:none;border-radius:0 14px 14px 0;box-shadow:0 10px 40px rgba(0,0,0,.35);text-decoration:none;transition:all .35s}
-.pwr:hover{background:rgba(123,63,169,.14);border-color:var(--border-a)}
+.pwr{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;align-items:center;gap:10px;padding:14px 12px 16px;background:rgba(7,7,9,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-left:none;border-radius:0 14px 14px 0;box-shadow:0 10px 40px rgba(0,0,0,.45);text-decoration:none;transition:all .35s}
+.pwr:hover{background:rgba(20,11,30,.95);border-color:var(--border-a)}
 .pwr span{font-family:var(--fm);font-size:.5rem;letter-spacing:.35em;text-transform:uppercase;color:var(--dim);transition:color .3s}
 .pwr:hover span{color:var(--accent-b)}
 .pwr img{width:46px;height:auto;display:block;filter:drop-shadow(0 4px 12px rgba(123,63,169,.4))}
@@ -404,7 +405,7 @@ footer{padding:60px 48px 24px;border-top:1px solid var(--border);max-width:1400p
 
 <div class="modal" id="mod"><div class="inner"><button class="mcl" onclick="cm()">close &times;</button><iframe id="mif" src="" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div></div>
 
-<div class="popup-ov" id="popup"><div class="popup-box"><button class="popup-x" onclick="cpop()">&times;</button><div class="popup-top"><h3>Let's Bring Your Vision to Life</h3><p>Get a free consultation for your next project.</p></div><div class="popup-body"><p>Drop your email and our team will reach out within 24 hours — no strings attached.</p><div class="popup-in"><input type="email" placeholder="your@email.com" id="popEmail"><button onclick="spop()">Get Started</button></div><p class="popup-note">We respect your privacy. No spam, ever.</p><p class="popup-disc">By submitting, you agree to our <span class="pp-tip">LTF Media Privacy Policy<span class="pp-tipbox">We collect your name, phone number and email address to contact you regarding our video editing and post-production services. We do not sell or share your personal information with third parties.</span></span>.</p></div></div></div>
+<div class="popup-ov" id="popup"><div class="popup-box"><button class="popup-x" onclick="cpop()">&times;</button><div class="popup-top"><h3>Let's Bring Your Vision to Life</h3><p>Get a free consultation for your next project.</p></div><div class="popup-body"><p>Drop your email and our team will reach out within 24 hours — no strings attached.</p><div class="popup-in"><input type="email" placeholder="your@email.com" id="popEmail" required><textarea id="popInfo" rows="3" placeholder="Please advise what information or materials we should furnish before the meeting" required></textarea><button onclick="spop()">Get Started</button></div><p class="popup-note">We respect your privacy. No spam, ever.</p><p class="popup-disc">By submitting, you agree to our <span class="pp-tip">LTF Media Privacy Policy<span class="pp-tipbox">We collect your name, phone number and email address to contact you regarding our video editing and post-production services. We do not sell or share your personal information with third parties.</span></span>.</p></div></div></div>
 
 <nav id="nav">
   <a href="#" class="logo"><img src="assets/ltf-logo-bottom-band-02.png" alt="LTF Media"></a>
@@ -553,7 +554,7 @@ const dEl=document.querySelector('.dg');if(dEl)dObs.observe(dEl);
 // Popup
 setTimeout(()=>{if(!sessionStorage.getItem('pc')){document.getElementById('popup').classList.add('show');document.body.style.overflow='hidden'}},30000);
 function cpop(){document.getElementById('popup').classList.remove('show');document.body.style.overflow='';sessionStorage.setItem('pc','1')}
-function spop(){const e=document.getElementById('popEmail');if(e.value&&e.value.includes('@')){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value})}).catch(()=>{});setTimeout(cpop,2000)}else{e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}}
+function spop(){const e=document.getElementById('popEmail'),info=document.getElementById('popInfo');const okE=e.value&&e.value.includes('@'),okI=info.value.trim().length>0;if(okE&&okI){const b=document.querySelector('.popup-in button');b.textContent='Thank you!';b.style.background='var(--bg)';b.style.color='var(--accent)';e.disabled=true;info.disabled=true;fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e.value,info:info.value})}).catch(()=>{});setTimeout(cpop,2000)}else{if(!okE){e.style.borderColor='#ff4444';setTimeout(()=>e.style.borderColor='',1500)}if(!okI){info.style.borderColor='#ff4444';setTimeout(()=>info.style.borderColor='',1500)}}}
 document.getElementById('popup').addEventListener('click',e=>{if(e.target===e.currentTarget)cpop()});
 
 // Film reel

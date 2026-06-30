@@ -26,6 +26,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email' });
   }
 
+  // Required: what info/materials to furnish before the meeting.
+  const info = String(body.info || '').trim().slice(0, 5000);
+  if (!info) {
+    return res.status(400).json({ error: 'Missing required details' });
+  }
+
   const TO = process.env.NOTIFY_TO || 'letscreate@ltfmedia.agency';
   // From address must belong to a domain verified in your Resend account.
   const FROM = process.env.NOTIFY_FROM || 'LTF Media <notifications@ltfmedia.agency>';
@@ -48,6 +54,9 @@ export default async function handler(req, res) {
           '<p>Someone just dropped their email in the consultation popup on the LTF Media website.</p>' +
           '<p><strong>Their email:</strong> ' +
           '<a href="mailto:' + escapeHtml(email) + '">' + escapeHtml(email) + '</a></p>' +
+          '<p style="margin-top:16px"><strong>Information / materials to furnish before the meeting:</strong></p>' +
+          '<p style="white-space:pre-wrap;background:#f5f5f7;padding:12px 14px;border-radius:6px">' +
+          escapeHtml(info) + '</p>' +
           '<p style="color:#666;font-size:13px">Received ' + new Date().toUTCString() + '</p>' +
           '<p style="color:#666;font-size:13px">Reply directly to this email to reach them.</p>' +
           '</div>',
